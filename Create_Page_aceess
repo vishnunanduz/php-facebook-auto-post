@@ -1,0 +1,72 @@
+Getting Permanant Facebook Page Access Token
+=========================================================
+
+/* Requirements */
+--------------------------
+* Facebook App_Id
+* Facebook App_Secret_Key
+* Facebook Page_Id
+--------------------------
+
+* Facebook App_Id &  Facebook App_Secret_Key
+-----------------------------------------------
+
+-follow the instructions given in (https://developers.facebook.com/docs/apps/register)
+1.LOGIN
+2.CREATE NEW APP
+3.CHOOSE NAME AND CATEGORY AS APP FOR PAGE
+4.AFTER CREATION GO TO DASHBOARD
+5.GET APP_ID & APP_SECRET
+
+
+
+
+* Facebook Page_Id *
+--------------------------
+- create page
+- go to that page
+- about
+- page ID
+
+
+
+
+
+/* Proceedures */
+------------------------
+
+1. Get User Short-Lived Access Token
+......................................
+
+- Go to the Graph API Explorer.(https://developers.facebook.com/tools/explorer/)
+- Select the application you want to get the access token for.
+- Click "Get Access Token".
+- In the pop-up, under the "Extended Permissions" tab, check "manage_pages,read_insights, manage_pages, publish_pages, 		public_profile".
+- Click "Get Access Token".
+
+Token that appears in the "Access Token" field is your short-lived access token
+
+2. Generate Long-Lived Access Token
+....................................
+
+Make a GET request to
+
+https://graph.facebook.com/v2.2/oauth/access_token?grant_type=fb_exchange_token&client_id={app_id}&client_secret={app_secret}&fb_exchange_token={short_lived_token}
+
+(Entering in your app's ID and secret and the short-lived token generated in the previous step.)
+
+(Since it's a GET request, you can just go to the URL in your browser.)
+
+The response should look like this:
+
+access_token=ABC123&expires=5182959
+
+3. Get Permanent Page Access Token
+........................................
+
+Make a GET request to
+
+
+https://graph.facebook.com/{Facebook_Page_Id}?fields=access_token&access_token={long_lived_access_token}
+
+- Check Access Token Debugger(https://developers.facebook.com/tools/debug/accesstoken) to get information about the access 	token.

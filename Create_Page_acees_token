@@ -70,3 +70,15 @@ Make a GET request to
 https://graph.facebook.com/{Facebook_Page_Id}?fields=access_token&access_token={long_lived_access_token}
 
 - Check Access Token Debugger(https://developers.facebook.com/tools/debug/accesstoken) to get information about the access 	token.
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------end----------------------------------------------------------------
